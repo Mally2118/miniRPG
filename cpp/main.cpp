@@ -1,44 +1,30 @@
 #include <iostream>
-
-// возможные классный персонажа
-enum class HeroClass {
-    Rogue,
-    Warrior,
-    Barbarian
-};
-
-// характеристики персонажа
-struct Attributes {
-    int strength;
-    int agility;
-    int endurance;
-};
-
-// базовое здоровье класса
-int getBaseHealth(HeroClass heroClass) {
-    switch (heroClass) {
-        case HeroClass::Rogue:
-            return 4;
-
-        case HeroClass::Warrior:
-            return 5;
-            
-        case HeroClass::Barbarian:
-            return 6;
-    }
-    return 0;
-}
+#include "Character.h"
 
 int main() {
-    // характериски из примера ТЗ
-    Attributes stats{1, 3, 2};
+    std::cout << "=== MINI RPG ===\n";
+    std::cout << "\nChoose your class:\n";
+    std::cout << "1. Rogue\n";
+    std::cout << "2. Warrior\n";
+    std::cout << "3. Barbarian\n";
 
-    // в качестве примера выберем разбойника
-    HeroClass heroClass = HeroClass::Rogue;
+    int choice = 0;
 
-    int maxHealth = getBaseHealth(heroClass) + stats.endurance;
+    while(true) {
+        std::cout << "\nYour choice: ";
+        
+        if (std::cin >> choice && choice >= 1 && choice <= 3) {
+            break;
+        }
+        std::cout << "Invalide choice. Try again.\n";
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+    }
 
-    std::cout << "Hero HP: " << maxHealth << '\n';
+    HeroClass selectedClass = static_cast<HeroClass>(choice - 1);
+
+    Character hero = createCharacter(selectedClass);
+    printCharacter(hero);
 
     return 0;
 }
