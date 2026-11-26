@@ -29,6 +29,7 @@ struct Character {
 
 // объявление функций
 int getBaseHealth(HeroClass heroClass);
+int getBaseDamage(const Character& hero);
 std::string getClassName(HeroClass heroClass);
 Character createCharacter(HeroClass HeroClass);
 void printCharacter(const Character& character);

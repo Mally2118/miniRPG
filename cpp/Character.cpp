@@ -26,6 +26,10 @@ int getBaseHealth(HeroClass heroClass) {
     return 0;
 }
 
+int getBaseDamage(const Character& hero) {
+    return hero.weaponDamage + hero.stats.strength;
+}
+
 std::string getClassName(HeroClass heroClass) {
     switch (heroClass)
     {
@@ -67,9 +71,10 @@ Character createCharacter(HeroClass heroClass) {
 
     case HeroClass::Barbarian:
         hero.weaponName = "Club";
-        hero.weaponDamage = 2;
+        hero.weaponDamage = 3;
         break;
     }
+
     return hero;
 }
 
@@ -77,10 +82,11 @@ void printCharacter(const Character& hero) {
     std::cout << "\n=== YOUR CHARACTER ==\n";
     std::cout << "Class: " << getClassName(hero.heroClass) << '\n';
     std::cout << "Level: " << hero.level << '\n';
-    std::cout << "Strentgh: " << hero.stats.strength << '\n';
+    std::cout << "Strength: " << hero.stats.strength << '\n';
     std::cout << "Agility: " << hero.stats.agility << '\n';
     std::cout << "Endurance: " << hero.stats.endurance << '\n';
+    std::cout << "Total stats: " << hero.stats.endurance + hero.stats.strength + hero.stats.agility << '\n';
     std::cout << "Health: " << hero.health << " / " << hero.maxHealth << '\n';
     std::cout << "Weapon: " << hero.weaponName << '\n';
-    std::cout << "Damage: " << hero.weaponDamage + hero.stats.strength << '\n';
+    std::cout << "Damage: " << getBaseDamage(hero) << '\n';
 }
