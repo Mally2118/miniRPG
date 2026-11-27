@@ -1,4 +1,5 @@
 #include "Character.h"
+#include "Weapon.h"
 
 #include <iostream>
 #include <random>
@@ -27,7 +28,7 @@ int getBaseHealth(HeroClass heroClass) {
 }
 
 int getBaseDamage(const Character& hero) {
-    return hero.weaponDamage + hero.stats.strength;
+    return hero.weapon.damage + hero.stats.strength;
 }
 
 std::string getClassName(HeroClass heroClass) {
@@ -60,18 +61,15 @@ Character createCharacter(HeroClass heroClass) {
     switch (heroClass)
     {
     case HeroClass::Rogue:
-        hero.weaponName = "Dagger";
-        hero.weaponDamage = 2;
+        hero.weapon = createWeapon(WeaponType::Dagger);
         break;
     
     case HeroClass::Warrior:
-        hero.weaponName = "Sword";
-        hero.weaponDamage = 3;
+        hero.weapon = createWeapon(WeaponType::Sword);
         break;
 
     case HeroClass::Barbarian:
-        hero.weaponName = "Club";
-        hero.weaponDamage = 3;
+        hero.weapon = createWeapon(WeaponType::Club);
         break;
     }
 
@@ -87,6 +85,8 @@ void printCharacter(const Character& hero) {
     std::cout << "Endurance: " << hero.stats.endurance << '\n';
     std::cout << "Total stats: " << hero.stats.endurance + hero.stats.strength + hero.stats.agility << '\n';
     std::cout << "Health: " << hero.health << " / " << hero.maxHealth << '\n';
-    std::cout << "Weapon: " << hero.weaponName << '\n';
+    std::cout << "\n-- YOUR WEAPON --\n";
+    std::cout << "Weapon: " << hero.weapon.name << '\n';
+    std::cout << "Damage Type: " << getDamageTypeName(hero.weapon.damageType) << '\n';
     std::cout << "Damage: " << getBaseDamage(hero) << '\n';
 }

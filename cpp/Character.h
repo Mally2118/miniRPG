@@ -1,3 +1,4 @@
+#include "Weapon.h"
 #pragma once
 
 #include <string>
@@ -23,8 +24,7 @@ struct Character {
     int health;
     int maxHealth;
 
-    std::string weaponName;
-    int weaponDamage;
+    Weapon weapon;
 };
 
 // объявление функций

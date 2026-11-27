@@ -2,12 +2,6 @@
 #include "Character.h"
 
 int main() {
-    std::cout << "=== MINI RPG ===\n";
-    std::cout << "\nChoose your class:\n";
-    std::cout << "1. Rogue\n";
-    std::cout << "2. Warrior\n";
-    std::cout << "3. Barbarian\n";
-
     int choice = 0;
     std::string answer;
 
