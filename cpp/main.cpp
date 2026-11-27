@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Character.h"
+#include "Monster.h"
 
 int main() {
     int choice = 0;
@@ -27,6 +28,9 @@ int main() {
         HeroClass selectedClass = static_cast<HeroClass>(choice - 1);
         Character hero = createCharacter(selectedClass);
         printCharacter(hero);
+
+        Monster enemy = createRandomMonster();
+        printMonster(enemy);
 
         std::cout << "\nCreate a new character? (y/n): ";
         std::cin >> answer;
